@@ -13,5 +13,5 @@ conn.commit()
 
 
 def musicdb_add(musicid: int, musicname: str):
-    cur.execute("INSERT INTO music(?,?); VALUES (?, ?)"(musicid, musicname))
+    cur.execute('INSERT INTO music(?,?); VALUES (?, ?)')
     conn.commit()
