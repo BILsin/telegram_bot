@@ -7,12 +7,13 @@ cur = conn.cursor()
 
 cur.execute("""CREATE TABLE IF NOT EXISTS music(
             musicid INT PRIMARY KEY,
-            musicname TEXT,
-            musichash TEXT );
+            musichash TEXT,
+            moderation TEXT,
+            leadervote TEXT );
 """)
 conn.commit()
 
 
-def musicdb_add(musicid: int, musicname: str, musichash: str):
-    cur.execute('INSERT INTO music(?, ?, ?); VALUES (?, ?, ?)')
+def musicdb_add(musicid: int, musichash: str, moderation: str, leadervote: str):
+    cur.execute('INSERT INTO music(?, ?, ?, ?); VALUES (?, ?, ?, ?)')
     conn.commit()
