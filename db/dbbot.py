@@ -11,14 +11,14 @@ cur.execute("""CREATE TABLE IF NOT EXISTS users(
 conn.commit()
 conn2 = sqlite3.connect('music.db', check_same_thread=False)
 cur2 = conn.cursor()
-cur.execute("""CREATE TABLE IF NOT EXISTS music(
+cur2.execute("""CREATE TABLE IF NOT EXISTS music(
             music_id INT PRIMARY KEY,
             music_name TEXT,
             music_hash TEXT,
             music_mod INT,
             music_leader_vote INT );
-""")
-conn2.commit()
+""") #создаёт столбики в базе данных
+conn2.commit() #возвращает курсор в нач. положение
 
 
 def music_db_mod(music_id: int, music_name: str, music_hash: str, music_mod: int, music_leader_vote: int):
