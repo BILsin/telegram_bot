@@ -33,8 +33,7 @@ def users_db_add(user_id: int, username: str):
 
 @bot.message_handler(commands=['start'])
 def start_message(message, res=False):
-    bot.send_message(message.from_user.id, 'Ну привет, красавчик. Хочешь, чтобы я добавил тебя в свою базу данных? Тогда напиши мне "/add"')
-    bot.send_message(message.from_user.id, 'Ну привет, красавчик. Ты в моей базе данных-_-')
+    bot.send_message(message.from_user.id, 'Ну привет, красавчик. Ты в моей базе данных:_)')
 
     us_id = message.from_user.id
     us_name = message.from_user.username
