@@ -6,19 +6,19 @@ conn = sqlite3.connect('users.db', check_same_thread=False)
 cur = conn.cursor()
 cur.execute("""CREATE TABLE IF NOT EXISTS users(
             user_id INT PRIMARY KEY,
-            user_name TEXT );
+            username TEXT );
 """)
 conn.commit()
 conn2 = sqlite3.connect('music.db', check_same_thread=False)
 cur2 = conn.cursor()
-cur.execute("""CREATE TABLE IF NOT EXISTS music(
+cur2.execute("""CREATE TABLE IF NOT EXISTS music(
             music_id INT PRIMARY KEY,
             music_name TEXT,
             music_hash TEXT,
             music_mod INT,
             music_leader_vote INT );
-""")
-conn2.commit()
+""") #создаёт столбики в базе данных
+conn2.commit() #возвращает курсор в нач. положение
 
 
 def music_db_mod(music_id: int, music_name: str, music_hash: str, music_mod: int, music_leader_vote: int):
@@ -26,22 +26,19 @@ def music_db_mod(music_id: int, music_name: str, music_hash: str, music_mod: int
     conn2.commit()
 
 
-def users_db_add(user_id: int, user_name: str):
-    cur.execute('INSERT INTO users (user_id, user_name) VALUES (?, ?)', (user_id, user_name))
+def users_db_add(user_id: int, username: str):
+    cur.execute('INSERT INTO users (user_id, username) VALUES (?, ?)', (user_id, username))
     conn.commit()
 
 
 @bot.message_handler(commands=['start'])
 def start_message(message, res=False):
-        bot.send_message(message.from_user.id, 'Ну привет, красавчик. Хочешь что бы я добавил тебя в свою базу данных? Тогда напиши мне "/add"')
+    bot.send_message(message.from_user.id, 'Ну привет, красавчик. Ты в моей базе данных:_)')
 
+    us_id = message.from_user.id
+    us_name = message.from_user.username
+    users_db_add(user_id=us_id, username=us_name)
 
-@bot.message_handler(commands=['add'])
-def users_add(message, res=False):
-        bot.send_message(message.from_user.id, 'Ты в моей базе данных-_-')
-        us_id = message.from_user.id
-        us_name = message.from_user.first_name
-        users_db_add(user_id=us_id, user_name=us_name)
 
 
 @bot.message_handler(content_types=['audio'])
