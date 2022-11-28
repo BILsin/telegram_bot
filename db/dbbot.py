@@ -53,9 +53,10 @@ def handle_audio(message):
         with open(src, 'wb') as new_file:
            new_file.write(downloaded_file)
         bot.reply_to(message, "Аудио добавлено")
+        moderation = open(src, 'rb')
+        bot.send_audio('788152184', moderation)
     except Exception as e:
         bot.reply_to(message, e)
-        bot.send_audio('788152184', src)
 
 
 '''@bot.message_handler(content_types=['text']) == 'approve_this_audio_99'
