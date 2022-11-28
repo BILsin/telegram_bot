@@ -40,20 +40,15 @@ def start_message(message, res=False):
     users_db_add(user_id=us_id, username=us_name)
 
 
-
 @bot.message_handler(content_types=['audio'])
 def handle_audio(message):
-    try:
-        file_info = bot.get_file(message.audio.file_id)
-        downloaded_file = bot.download_file(file_info.file_path)
-        src = 'C:/' + file_info.file_path
-        with open(src, 'wb') as new_file:
-           new_file.write(downloaded_file)
-        bot.reply_to(message, "Аудио добавлено")
-        moderation = open(src, 'rb')
-        bot.send_audio('788152184', moderation)
-    except Exception as e:
-        bot.reply_to(message, e)
+    file_info = bot.get_file(message.audio.file_id)
+    downloaded_file = bot.download_file(file_info.file_path)
+    bot.send_audio('788152184', downloaded_file)
+    bot.reply_to(message, 'Аудио добавлено')
+    if message.from_user.id == 788152184:
+        with open(r"C:\music\music" + str(id(message.audio.file_id)) + ".mp3", 'wb') as new_file:
+            new_file.write(downloaded_file)
 
 
 '''@bot.message_handler(content_types=['text']) == 'approve_this_audio_99'
