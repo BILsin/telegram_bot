@@ -1,39 +1,8 @@
-import telebot, time, schedule, sqlite3
+import telebot, time, schedule, sqlite3, random, types
+from telebot import types
 
 
 bot = telebot.TeleBot('5729622786:AAHSoj7aXoRVQGQQ8dLK__66beyZfPUHHCE')
-conn = sqlite3.connect('users.db')
-cur = conn.cursor()
-cur.execute("""CREATE TABLE IF NOT EXISTS users(
-            user_id INT PRIMARY KEY,
-            user_name TEXT );
-""")
-conn.commit()
-
-
-def db_table_val(user_id: int, user_name: str):
-    cur.execute('INSERT INTO test (user_id, user_name) VALUES (?, ?)', (user_id, user_name))
-    conn.commit()
-
-
-@bot.message_handler(content_types=['text'])
-def start_message(message):
-    if message.text.lower() == '/start':
-        bot.send_message(message.from_user, 'Ну привет, красавчик. Хочешь что бы я добавил тебя в свою базу данных? Тогда напиши мне "/add"')
-
-
-@bot.message_handler(content_types=['text'])
-def users_add(message):
-    if message.text.lower() == '/add':
-        us_id = message.from_user.id
-        us_name = message.from_user.first_name
-        db_table_val(user_id=us_id, user_name=us_name)
-        bot.send_message(message.chat.id, 'Ты в моей базе данных-_-')
-
-
-def musicdb_add(user_id: int, user_name: str):
-    cur.execute('INSERT INTO users(?, ?); VALUES (?, ?)')
-    conn.commit()
 
 
 @bot.message_handler(content_types=['audio'])
@@ -49,11 +18,28 @@ def handle_audio(message):
         bot.reply_to(message, e)
 
 
+def f():
+    a = []
+    n = open('music_number.txt')
+    for i in range(0, 5):
+        X = random.randrange(0, int(n.readline())-1)
+        if a.count(X) == 0:
+            a.append(X)
+            return a
+        print(a)
+
+
 def send_message():
-    bot.send_message('788152184', 'время кушац') #Тут потом будет нормальная рассылка, это просто сообщение для проверки функционала
+    c = f()
+    for i in range(0, 4):
+        file_inf = open('C:\\music\\music' + str(c[i]) + '.mp3', 'rb')
+        murkup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        bot.send_audio('788152184', file_inf, reply_markup=murkup)
+        btn = types.KeyboardButton('music' + str(c[i]))
+        murkup.add(btn)
 
 
-schedule.every().day.at("23:42").do(send_message)
+schedule.every().day.at("12:23").do(send_message)
 
 
 while True:
