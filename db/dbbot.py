@@ -1,6 +1,8 @@
 import telebot, sqlite3
 
 
+n = open('music_number.txt')
+music_number = int(n.readline())
 bot = telebot.TeleBot('5729622786:AAHSoj7aXoRVQGQQ8dLK__66beyZfPUHHCE')
 conn = sqlite3.connect('users.db', check_same_thread=False)
 cur = conn.cursor()
@@ -34,7 +36,6 @@ def users_db_add(user_id: int, username: str):
 @bot.message_handler(commands=['start'])
 def start_message(message, res=False):
     bot.send_message(message.from_user.id, 'Ну привет, красавчик. Ты в моей базе данных:_)')
-
     us_id = message.from_user.id
     us_name = message.from_user.username
     users_db_add(user_id=us_id, username=us_name)
@@ -42,19 +43,17 @@ def start_message(message, res=False):
 
 @bot.message_handler(content_types=['audio'])
 def handle_audio(message):
+    global music_number, n
     file_info = bot.get_file(message.audio.file_id)
     downloaded_file = bot.download_file(file_info.file_path)
     bot.send_audio('788152184', downloaded_file)
     bot.reply_to(message, 'Аудио добавлено')
     if message.from_user.id == 788152184:
-        with open(r"C:\music\music" + str(id(message.audio.file_id)) + ".mp3", 'wb') as new_file:
+        with open(r"C:\music\music" + str(music_number) + ".mp3", 'wb') as new_file:
+            with open('music_number.txt', 'w') as n:
+                music_number += 1
+                n.write(str(music_number))
             new_file.write(downloaded_file)
-
-
-'''@bot.message_handler(content_types=['text']) == 'approve_this_audio_99'
-def moderation_code(message, res=False):
-    mod = 1
-    music_db_mod(music_id=id())'''
 
 
 bot.polling(none_stop=True)
