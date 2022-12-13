@@ -5,6 +5,14 @@ from telebot import types
 bot = telebot.TeleBot('5729622786:AAHSoj7aXoRVQGQQ8dLK__66beyZfPUHHCE')
 
 
+@bot.message_handler(commands=['start'])
+def start_message(message):
+    murkup =types.ReplyKeyboardMarkup(resize_keyboard=True)
+    btn1 = types.InlineKeyboardButton("Чекнуть список")
+    murkup.add(btn1)
+    bot.send_message(message.chat.id,text = "hi".format(message.from_user), reply_markup=murkup)
+
+
 @bot.message_handler(content_types=['audio'])
 def handle_audio(message):
     try:
@@ -33,25 +41,23 @@ def random_number():
         else:
             continue
     return c
+@bot.message_handler(content_types=['text'])
+def priziv(message):
+    if message.chat.type == 'private':
+        if message.text == 'Чекнуть список':
+            c = random_number()
+            print(c)
+            murkup = types.InlineKeyboardMarkup()
+            for i in range(0, 5):
+                n = c[i]
+                btn = types.InlineKeyboardButton(str(n), cllback_data="test")
+                murkup.add(btn)
+                with open('C:\\music\\music' + str(n) + '.mp3', 'rb') as f:
+                    bot.send_audio(message.chat.id, f)
+                bot.send_message(message.chat.id, 'Поставить лайк'.format(message.from_user), reply_markup=murkup)
 
 
-def send_message():
-    c = random_number()
-    print(c)
-    for i in range(0, 5):
-        n = c[i]
-        murkup =  types.InlineKeyboardMarkup()
-        btn = types.InlineKeyboardButton()
-        file_inf = open('C:\\music\\music' + str(n) + '.mp3', 'rb')
-        bot.send_audio('788152184', file_inf)
 
-
-schedule.every().day.at("09:13").do(send_message)
-
-
-while True:
-    schedule.run_pending()
-    time.sleep(1)
 
 
 bot.polling(none_stop=True)

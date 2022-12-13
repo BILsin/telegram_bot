@@ -41,6 +41,12 @@ def start_message(message, res=False):
     users_db_add(user_id=us_id, username=us_name)
 
 
+@bot.message_handler(content_types=['text'])
+def vnsdb(message):
+    if message == 'привет':
+        bot.send_message(message.from_user.id, 'РНПВГНРГВРПЫ')
+
+
 @bot.message_handler(content_types=['audio'])
 def handle_audio(message):
     global music_number, n
