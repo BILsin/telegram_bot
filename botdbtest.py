@@ -2,6 +2,7 @@ import telebot, time, schedule, sqlite3, random, types
 from telebot import types
 
 
+c = list()
 bot = telebot.TeleBot('5729622786:AAHSoj7aXoRVQGQQ8dLK__66beyZfPUHHCE')
 
 
@@ -18,28 +19,32 @@ def handle_audio(message):
         bot.reply_to(message, e)
 
 
-def f():
-    a = []
+def random_number():
+    global c
     n = open('music_number.txt')
-    for i in range(0, 5):
-        X = random.randrange(0, int(n.readline())-1)
-        if a.count(X) == 0:
-            a.append(X)
-            return a
-        print(a)
+    X = random.randrange(0, int(n.readline()))
+    if c.count(X) == 0:
+        return X
 
 
 def send_message():
-    c = f()
-    for i in range(0, 4):
-        file_inf = open('C:\\music\\music' + str(c[i]) + '.mp3', 'rb')
-        murkup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-        bot.send_audio('788152184', file_inf, reply_markup=murkup)
-        btn = types.KeyboardButton('music' + str(c[i]))
-        murkup.add(btn)
+    global c
+    k = 0
+    while k != 5:
+        x = random_number()
+        if c.count(x) == 0 and x != 'none' and x != 'None' and x != 'NONE':
+            c.append(random_number())
+            k += 1
+        if k == 5: break
+        else: continue
+    print(c)
+    for i in range(0, 5):
+        n = c[i]
+        file_inf = open('C:\\music\\music' + str(n) + '.mp3', 'rb')
+        bot.send_audio('788152184', file_inf)
 
 
-schedule.every().day.at("12:23").do(send_message)
+schedule.every().day.at("08:56").do(send_message)
 
 
 while True:
