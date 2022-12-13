@@ -96,7 +96,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like1.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан')
+            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt2':
@@ -107,7 +107,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like2.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан')
+            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt3':
@@ -118,7 +118,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like3.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан')
+            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt4':
@@ -129,7 +129,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like4.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан')
+            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt5':
@@ -140,7 +140,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like5.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан')
+            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' +str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
 
