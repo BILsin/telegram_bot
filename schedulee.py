@@ -1,7 +1,4 @@
 import random
-import sched
-import threading
-import time
 
 
 global c
@@ -22,9 +19,6 @@ def random_number():
         else:
             continue
     return c
-
-
-c = random_number()
 
 
 

@@ -1,6 +1,9 @@
-import telebot
+import telebot, random
 from telebot import types
-import random
+
+
+likeprofile = []
+bot = telebot.TeleBot('5883195717:AAGsI3Jp8Vu79h0ubIg7sZmRUExvalAo9DY')
 
 
 def random_number():
@@ -9,8 +12,8 @@ def random_number():
     while k != 5:
         if k == 5:
             break
-        fileop = open('music_number.txt')
-        X = random.randrange(0, int(fileop.readline()))
+        n = open('music_number.txt')
+        X = random.randrange(0, int(n.readline()))
         if c.count(X) == 0:
             c.append(X)
         elif len(c) == 5:
@@ -20,10 +23,6 @@ def random_number():
     return c
 
 
-likeprofile = []
-bot = telebot.TeleBot('5883195717:AAGsI3Jp8Vu79h0ubIg7sZmRUExvalAo9DY')
-
-
 c = random_number()
 print(c)
 
@@ -31,11 +30,18 @@ print(c)
 @bot.message_handler(commands=['start'])
 def start_message(message):
     murkup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    btn1 = types.InlineKeyboardButton("Чекнуть список")
     btn1000 = types.KeyboardButton("Обратная связь")
-    btn999 = types.KeyboardButton("Посмотреть список на сегодня")
-    murkup.add(btn999, btn1000)
-    bot.send_message(message.chat.id, text="Здравствуйте,{0.first_name}!\nВас приветствует телеграмм бот, который может менять школьные звонки посредством голосования. Что бы аудио прошло модерацию нужно соблюдать несколько правил: \n1.Audio файл должен быть от 8-15 секунд   \n2.Файл не должен содержать мата, резких и режущих звуков. \nДля загрузки просто отправьте аудио боту".format(message.from_user), reply_markup=murkup)
+    murkup.add(btn1, btn1000)
+    bot.send_message(message.chat.id,
+                     text="Здравствуйте,{0.first_name}!Вас приветствует телеграмм бот, который может менять школьные звонки посредством голосования.Для корректной работы бота нужно соблюдать несколько правил:    1.Audio файл должен быть от 8-15 секунд     2.Файл не должен содержать мата,резких и режущих звуков."
+                          "Для загрузки аудио ,просто отправьте аудио боту".format(message.from_user),reply_markup=murkup)
 
+@bot.message_handler(content_types=['text'])
+def obr_sv(message):
+    if message.chat.type == 'private':
+        if message.text == 'Обратная связь':
+            bot.send_message(message.chat.id, 'https://docs.google.com/forms/d/e/1FAIpQLSfnp-w2O2mvRjvA1Y0QBUKO-b1M_tVbtR-CFhk3B2dLcV4YoQ/viewform?usp=sf_link'.format(message.from_user))
 
 
 @bot.message_handler(content_types=['audio'])
@@ -57,7 +63,7 @@ def handle_audio(message):
 def priziv(message):
     global c
     if message.chat.type == 'private':
-        if message.text == "Посмотреть список на сегодня":
+        if message.text == 'Чекнуть список':
             markup = types.InlineKeyboardMarkup()
             button1 = types.InlineKeyboardButton(1, callback_data="bt1")
             markup.add(button1)
@@ -88,8 +94,6 @@ def priziv(message):
             with open('C:\\music\\music' + str(c[4]) + '.mp3', 'rb') as f:
                 bot.send_audio(message.chat.id, f)
             bot.send_message(message.chat.id, 'Проголосовать'.format(message.from_user), reply_markup=markup)
-        if message.text == 'Обратная связь':
-            bot.send_message(message.chat.id, 'https://docs.google.com/forms/d/e/1FAIpQLSfnp-w2O2mvRjvA1Y0QBUKO-b1M_tVbtR-CFhk3B2dLcV4YoQ/viewform?usp=sf_link'.format(message.from_user))
 
 
 @bot.callback_query_handler(func=lambda call: True)
@@ -102,7 +106,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like1.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчиан')
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt2':
@@ -113,7 +117,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like2.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчиан')
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt3':
@@ -124,7 +128,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like3.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчиан')
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt4':
@@ -135,7 +139,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like4.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчиан')
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt5':
@@ -146,7 +150,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like5.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' +str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчиан')
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
 
