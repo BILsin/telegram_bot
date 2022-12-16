@@ -84,6 +84,8 @@ if winner == likeinf4:
 if winner == likeinf5:
     maximum = 4
 print(winner, maximum)
+shutil.copy(os.path.join('C:\music', 'music' + str(c[maximum]) + '.mp3'), r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner')
+os.rename(r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\music' + str(c[maximum]) + '.mp3', r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\winner.mp3')
 print('победитель определён')
 
 
@@ -168,7 +170,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like1.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчитан. Колличество лайков у выбранного трека:' + ' ' + str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt2':
@@ -179,7 +181,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like2.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчитан. Колличество лайков у выбранного трека:' + ' ' + str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt3':
@@ -190,7 +192,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like3.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчитан. Колличество лайков у выбранного трека:' + ' ' + str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt4':
@@ -201,7 +203,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like4.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' + str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчитан. Колличество лайков у выбранного трека:' + ' ' + str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt5':
@@ -212,7 +214,7 @@ def answer(call):
             like = str(int(like) + 1)
             with open('like5.txt', 'w') as n:
                 n.write(str(like))
-            bot.send_message(call.message.chat.id, 'Лайк засчиан. Колличество лайков у выбранного трека:' + ' ' +str(like))
+            bot.send_message(call.message.chat.id, 'Лайк засчитан. Колличество лайков у выбранного трека:' + ' ' +str(like))
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
 
