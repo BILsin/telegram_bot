@@ -31,27 +31,10 @@ c = random_number()
 print(c)
 
 
-papka = glob.glob(r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\leadervote\*')
-for f in papka:
-    os.remove(f)
-print('leadervote очищен')
-
-
-for i in range(0, 5):
-    shutil.copy(os.path.join('C:\music', 'music' + str(c[i]) + '.mp3'), r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\leadervote')
-print('файлы скопированы')
-
-
-with open('like1.txt', 'w') as n:
-    n.write(str(0))
-with open('like2.txt', 'w') as n:
-    n.write(str(0))
-with open('like3.txt', 'w') as n:
-    n.write(str(0))
-with open('like4.txt', 'w') as n:
-    n.write(str(0))
-with open('like5.txt', 'w') as n:
-    n.write(str(0))
+papka2 = glob.glob(r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\*')
+for j in papka2:
+    os.remove(j)
+print('winner очищен')
 
 
 sch = open('like1.txt')
@@ -66,12 +49,9 @@ sch = open('like5.txt')
 likeinf5 = int(sch.readline())
 
 
-papka2 = glob.glob(r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\*')
-for j in papka2:
-    os.remove(j)
-print('winner очищен')
-
-
+n = open('c.txt')
+cold = n.readline()
+print(cold)
 winner = max(likeinf1, likeinf2, likeinf3, likeinf4, likeinf5)
 if winner == likeinf1:
     maximum = 0
@@ -84,9 +64,36 @@ if winner == likeinf4:
 if winner == likeinf5:
     maximum = 4
 print(winner, maximum)
-shutil.copy(os.path.join('C:\music', 'music' + str(c[maximum]) + '.mp3'), r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner')
-os.rename(r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\music' + str(c[maximum]) + '.mp3', r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\winner.mp3')
+shutil.copy(os.path.join('C:\music', 'music' + str(cold[maximum]) + '.mp3'), r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner')
+os.rename(r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\music' + str(cold[maximum]) + '.mp3', r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\winner.mp3')
 print('победитель определён')
+
+
+with open('like1.txt', 'w') as n:
+    n.write(str(0))
+with open('like2.txt', 'w') as n:
+    n.write(str(0))
+with open('like3.txt', 'w') as n:
+    n.write(str(0))
+with open('like4.txt', 'w') as n:
+    n.write(str(0))
+with open('like5.txt', 'w') as n:
+    n.write(str(0))
+
+
+papka = glob.glob(r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\leadervote\*')
+for f in papka:
+    os.remove(f)
+print('leadervote очищен')
+
+
+for i in range(0, 5):
+    shutil.copy(os.path.join('C:\music', 'music' + str(c[i]) + '.mp3'), r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\leadervote')
+print('файлы скопированы')
+
+
+with open(r"C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\c.txt", "w") as n:
+    n.write(str(c[0])+' '+str(c[1])+' '+str(c[2])+' '+str(c[3])+' '+str(c[4]))
 
 
 likeprofile = []
