@@ -128,31 +128,31 @@ def priziv(message):
             markup.add(button1)
             with open('C:\\music\\music' + str(c[0]) + '.mp3', 'rb') as f:
                 bot.send_audio(message.chat.id, f)
-            bot.send_message(message.chat.id, 'Проголосовать'.format(message.from_user), reply_markup=markup)
+            bot.send_message(message.chat.id, 'Лайк'.format(message.from_user), reply_markup=markup)
             markup = types.InlineKeyboardMarkup()
             button2 = types.InlineKeyboardButton(2, callback_data="bt2")
             markup.add(button2)
             with open('C:\\music\\music' + str(c[1]) + '.mp3', 'rb') as f:
                 bot.send_audio(message.chat.id, f)
-            bot.send_message(message.chat.id, 'Проголосовать'.format(message.from_user), reply_markup=markup)
+            bot.send_message(message.chat.id, 'Лайк'.format(message.from_user), reply_markup=markup)
             markup = types.InlineKeyboardMarkup()
             button3 = types.InlineKeyboardButton(3, callback_data="bt3")
             markup.add(button3)
             with open('C:\\music\\music' + str(c[2]) + '.mp3', 'rb') as f:
                 bot.send_audio(message.chat.id, f)
-            bot.send_message(message.chat.id, 'Проголосовать'.format(message.from_user), reply_markup=markup)
+            bot.send_message(message.chat.id, 'Лайк'.format(message.from_user), reply_markup=markup)
             markup = types.InlineKeyboardMarkup()
             button4 = types.InlineKeyboardButton(4, callback_data="bt4")
             markup.add(button4)
             with open('C:\\music\\music' + str(c[3]) + '.mp3', 'rb') as f:
                 bot.send_audio(message.chat.id, f)
-            bot.send_message(message.chat.id, 'Проголосовать'.format(message.from_user), reply_markup=markup)
+            bot.send_message(message.chat.id, 'Лайк'.format(message.from_user), reply_markup=markup)
             markup = types.InlineKeyboardMarkup()
             button5 = types.InlineKeyboardButton(5, callback_data="bt5")
             markup.add(button5)
             with open('C:\\music\\music' + str(c[4]) + '.mp3', 'rb') as f:
                 bot.send_audio(message.chat.id, f)
-            bot.send_message(message.chat.id, 'Проголосовать'.format(message.from_user), reply_markup=markup)
+            bot.send_message(message.chat.id, 'Лайк'.format(message.from_user), reply_markup=markup)
         if message.text == 'Обратная связь':
             bot.send_message(message.chat.id, 'https://docs.google.com/forms/d/e/1FAIpQLSfnp-w2O2mvRjvA1Y0QBUKO-b1M_tVbtR-CFhk3B2dLcV4YoQ/viewform?usp=sf_link'.format(message.from_user))
 
