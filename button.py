@@ -84,12 +84,6 @@ if winner == likeinf4:
 if winner == likeinf5:
     maximum = 4
 print(winner, maximum)
-
-
-namenow = r"C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\music" + str(c[maximum]) + ".mp3"
-namepast = r"C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\winner\winner.mp3"
-shutil.copy(os.path.join(r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot\leadervote', 'music' + str(c[maximum]) + '.mp3'), r'C:\Users\фвьшт\OneDrive\Работа\Python\GitHub\telegram_bot')
-os.rename(namenow, namepast)
 print('победитель определён')
 
 
@@ -114,7 +108,7 @@ def handle_audio(message):
     downloaded_file = bot.download_file(file_info.file_path)
     bot.send_audio('788152184', downloaded_file)
     bot.reply_to(message, 'Аудио добавлено')
-    if message.from_user.id == 788152184:
+    if message.from_user.id == 788152184 or message.from_user.id == 5883195717:
         with open(r"C:\music\music" + str(music_number) + ".mp3", 'wb') as new_file:
             with open('music_number.txt', 'w') as n:
                 music_number += 1
@@ -168,7 +162,7 @@ def answer(call):
     print(likeprofile)
     if call.data == 'bt1':
         if likeprofile.count(call.from_user.id) == 0:
-            likeprofile.append(call.message.from_user.id)
+            likeprofile.append(call.from_user.id)
             n = open('like1.txt')
             like = n.readline()
             like = str(int(like) + 1)
@@ -189,8 +183,8 @@ def answer(call):
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt3':
-        if likeprofile.count(call.message.from_user.id) == 0:
-            likeprofile.append(call.message.from_user.id)
+        if likeprofile.count(call.from_user.id) == 0:
+            likeprofile.append(call.from_user.id)
             n = open('like3.txt')
             like = n.readline()
             like = str(int(like) + 1)
@@ -200,8 +194,8 @@ def answer(call):
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt4':
-        if likeprofile.count(call.message.from_user.id) == 0:
-            likeprofile.append(call.message.from_user.id)
+        if likeprofile.count(call.from_user.id) == 0:
+            likeprofile.append(call.from_user.id)
             n = open('like4.txt')
             like = n.readline()
             like = str(int(like) + 1)
@@ -211,8 +205,8 @@ def answer(call):
         else:
             bot.send_message(call.message.chat.id, 'Ты уже лайкал сегодня')
     if call.data == 'bt5':
-        if likeprofile.count(call.message.from_user.id) == 0:
-            likeprofile.append(call.message.from_user.id)
+        if likeprofile.count(call.from_user.id) == 0:
+            likeprofile.append(call.from_user.id)
             n = open('like5.txt')
             like = n.readline()
             like = str(int(like) + 1)
