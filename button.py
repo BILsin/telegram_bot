@@ -50,7 +50,8 @@ likeinf5 = int(sch.readline())
 
 
 n = open('c.txt')
-cold = n.readline()
+st = n.readline()
+cold = st.split()
 print(cold)
 winner = max(likeinf1, likeinf2, likeinf3, likeinf4, likeinf5)
 if winner == likeinf1:
