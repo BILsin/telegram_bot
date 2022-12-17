@@ -11,19 +11,15 @@ music_number = int(b.readline())
 
 
 def random_number():
-    k = 0
     c = []
-    while k != 5:
-        if k == 5:
+    fileop = open('music_number.txt')
+    musika = int(fileop.readline())
+    while len(c) != 5:
+        if len(c) == 5:
             break
-        fileop = open('music_number.txt')
-        X = random.randrange(0, int(fileop.readline()))
-        if c.count(X) == 0:
-            c.append(X)
-        elif len(c) == 5:
-            break
-        else:
-            continue
+        x = random.randrange(0, musika)
+        if c.count(x) == 0:
+            c.append(x)
     return c
 
 
